@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - feature/ci-cd
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar código do repositório
+        uses: actions/checkout@v4
+
+      - name: Verificar arquivos do projeto
+        run: |
+          test -f index.html
+          test -f style.css
+
+      - name: Verificar HTML
+        run: |
+          grep -q "<html" index.html
+          grep -q "</html>" index.html
+
+      - name: CI concluída
+        run: echo "Integração contínua executada com sucesso!"
