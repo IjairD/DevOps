@@ -1,0 +1,17 @@
+name: Alerta Microsoft Teams
+
+on:
+  push:
+
+jobs:
+  notify-teams:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Enviar alerta para o Teams
+        env:
+          TEAMS_WEBHOOK: ${{ secrets.TEAMS_WEBHOOK }}
+        run: |
+          curl -H "Content-Type: application/json" \
+               -d "{\"text\":\"🚀 Novo commit no repositório DevOps! Autor: ${{ github.actor }} | Commit: ${{ github.event.head_commit.message }} | Branch: ${{ github.ref_name }}\"}" \
+               "$TEAMS_WEBHOOK"
