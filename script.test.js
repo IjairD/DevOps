@@ -22,6 +22,8 @@ test("deve conter JavaScript na lista de tecnologias", () => {
     expect(tecnologias()).toContain("JavaScript");
 });
 
+// Testes unitários do projeto DevOps
+
 test("deve possuir quatro tecnologias cadastradas", () => {
     expect(quantidadeTecnologias()).toBe(4);
 });
